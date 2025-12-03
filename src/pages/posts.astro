@@ -272,40 +272,63 @@ const allTags = ["Backend", "Business", "CSS", "Design", "Frontend", "Gatsby", "
     });
   }
 
-  // 标签过滤功能
+  // 标签过滤功能（支持多选）
   const tagButtons = document.querySelectorAll('.tag-button');
   const dateGroups = document.querySelectorAll('.date-group');
 
-  tagButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-      const selectedTag = button.getAttribute('data-tag');
-      
-      // 切换按钮激活状态
-      tagButtons.forEach((btn) => {
-        btn.classList.toggle('active', btn === button);
-      });
+  function applyFilters() {
+    // 获取所有激活的标签
+    const activeTags = Array.from(tagButtons)
+      .filter((btn) => btn.classList.contains('active'))
+      .map((btn) => btn.getAttribute('data-tag'));
 
-      // 过滤文章
+    // 如果没有激活的标签，显示所有文章
+    if (activeTags.length === 0) {
       dateGroups.forEach((dateGroup) => {
         const postItems = dateGroup.querySelectorAll('.post-item');
-        let hasVisiblePosts = false;
-
         postItems.forEach((item) => {
-          const postTags = Array.from(item.querySelectorAll('.post-tag')).map(
-            (tag) => tag.textContent.toLowerCase().replace(/\s+/g, '-')
-          );
-          
-          if (!selectedTag || postTags.includes(selectedTag) || selectedTag === 'all') {
-            (item as HTMLElement).style.display = 'block';
-            hasVisiblePosts = true;
-          } else {
-            (item as HTMLElement).style.display = 'none';
-          }
+          (item as HTMLElement).style.display = 'block';
         });
-
-        // 如果该日期组没有可见的文章，隐藏整个日期组
-        (dateGroup as HTMLElement).style.display = hasVisiblePosts ? 'block' : 'none';
+        (dateGroup as HTMLElement).style.display = 'block';
       });
+      return;
+    }
+
+    // 过滤文章：显示包含任意一个激活标签的文章
+    dateGroups.forEach((dateGroup) => {
+      const postItems = dateGroup.querySelectorAll('.post-item');
+      let hasVisiblePosts = false;
+
+      postItems.forEach((item) => {
+        const postTags = Array.from(item.querySelectorAll('.post-tag')).map(
+          (tag) => tag.textContent.toLowerCase().replace(/\s+/g, '-')
+        );
+        
+        // 检查文章是否包含任意一个激活的标签
+        const hasMatchingTag = activeTags.some((activeTag) => 
+          postTags.includes(activeTag)
+        );
+        
+        if (hasMatchingTag) {
+          (item as HTMLElement).style.display = 'block';
+          hasVisiblePosts = true;
+        } else {
+          (item as HTMLElement).style.display = 'none';
+        }
+      });
+
+      // 如果该日期组没有可见的文章，隐藏整个日期组
+      (dateGroup as HTMLElement).style.display = hasVisiblePosts ? 'block' : 'none';
+    });
+  }
+
+  tagButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      // 切换当前按钮的激活状态
+      button.classList.toggle('active');
+      
+      // 应用过滤
+      applyFilters();
     });
   });
 </script>

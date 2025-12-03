@@ -168,9 +168,10 @@
   gap: 0.75rem;
   flex-wrap: wrap;
   cursor: pointer;
-  padding: 1rem;
+  padding: 0.4rem 1rem;
   border-radius: 8px;
   transition: background-color 0.2s ease;
+  min-height: auto;
 }
 
 .post-summary:hover {
@@ -183,8 +184,8 @@
 
 .title-icon-left {
   flex-shrink: 0;
-  width: 24px;
-  height: 36px;
+  width: 20px;
+  height: 24px;
   opacity: 0.8;
   background: linear-gradient(135deg, #76cfc5 0%, #ffb400 50%, #ec6664 100%);
   -webkit-mask: url(/svg/willow-decoration.svg) no-repeat center;
@@ -201,7 +202,7 @@
   margin: 0;
   flex: 1;
   min-width: 0;
-  line-height: 1.4;
+  line-height: 1.2;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -209,8 +210,8 @@
 
 .title-icon-right {
   flex-shrink: 0;
-  width: 24px;
-  height: 36px;
+  width: 20px;
+  height: 24px;
   opacity: 0.8;
   background: linear-gradient(135deg, #76cfc5 0%, #ffb400 50%, #ec6664 100%);
   -webkit-mask: url(/svg/willow-decoration.svg) no-repeat center;

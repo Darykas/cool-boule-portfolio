@@ -1,0 +1,93 @@
+---
+import "../styles/home.css";
+import "../styles/design.css";
+import "../styles/page-transitions.css";
+import Navigation from "../components/Navigation.astro";
+import Footer from "../components/Footer.astro";
+import DesignProjects from "../components/DesignProjects.astro";
+import { siteConfig } from "../config/site";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Design Projects - Cool Boule</title>
+    <script>
+      // Disable browser scroll restoration and ensure page starts at top
+      if ("scrollRestoration" in history) {
+        history.scrollRestoration = "manual";
+      }
+      // Immediately scroll to top on page load
+      window.scrollTo(0, 0);
+    </script>
+  </head>
+  <body>
+    <Navigation />
+
+    <main class="design-page">
+      <div class="design-page-container page-content">
+        <div class="design-header design-header-animate">
+          <h1 class="design-title">{siteConfig.design.title}</h1>
+          <p class="design-subtitle">
+            {siteConfig.design.subtitle}
+          </p>
+          <div class="design-divider"></div>
+        </div>
+
+        <div class="design-content-animate">
+          <DesignProjects />
+        </div>
+      </div>
+    </main>
+
+    <Footer />
+
+    <script>
+      // Ensure scroll position is at top after DOM loads
+      document.addEventListener("DOMContentLoaded", () => {
+        window.scrollTo(0, 0);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+        }, 0);
+      });
+      // Also ensure on page show (handles back/forward navigation)
+      window.addEventListener("pageshow", (event) => {
+        if (event.persisted) {
+          window.scrollTo(0, 0);
+        }
+      });
+
+      // Initialize page transition animations
+      document.addEventListener("DOMContentLoaded", () => {
+        // Trigger page content animation
+        const pageContent = document.querySelector(".page-content");
+        if (pageContent) {
+          requestAnimationFrame(() => {
+            pageContent.classList.add("visible");
+          });
+        }
+
+        // Trigger header animation
+        const header = document.querySelector(".design-header-animate");
+        if (header) {
+          requestAnimationFrame(() => {
+            header.classList.add("visible");
+          });
+        }
+
+        // Trigger content animations
+        const contentElements = document.querySelectorAll(
+          ".design-content-animate"
+        );
+        contentElements.forEach((element) => {
+          requestAnimationFrame(() => {
+            element.classList.add("visible");
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

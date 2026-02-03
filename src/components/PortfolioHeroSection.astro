@@ -1,0 +1,29 @@
+---
+import { siteConfig } from "../config/site";
+---
+
+<section class="hero-section" style="background: url('/images/sketch blue.PNG') center/cover no-repeat;">
+  <div class="hero-section-overlay"></div>
+  <div class="hero-content-wrapper page-content">
+    <div class="hero-left-col hero-content-animate" style="text-align: center; width: 100%; max-width: none;">
+      <h1 class="hero-big-text" style="font-size: 4rem; text-align: center;">{siteConfig.hero.name}</h1>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const heroContent = document.querySelector('.hero-content-animate');
+    const pageContent = document.querySelector('.page-content');
+    if (heroContent) {
+      requestAnimationFrame(() => {
+        heroContent.classList.add('visible');
+      });
+    }
+    if (pageContent) {
+      requestAnimationFrame(() => {
+        pageContent.classList.add('visible');
+      });
+    }
+  });
+</script>

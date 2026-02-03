@@ -15,9 +15,9 @@ const currentPath = Astro.url.pathname;
     </li>
     <li>
       <a
-        href="/posts"
-        class={`menu-link ${currentPath.startsWith("/posts") ? "active" : ""}`}
-        >{siteConfig.navigation.posts}</a
+        href="/about"
+        class={`menu-link ${currentPath.startsWith("/about") ? "active" : ""}`}
+        >{siteConfig.navigation.about}</a
       >
     </li>
     <li>
@@ -29,9 +29,9 @@ const currentPath = Astro.url.pathname;
     </li>
     <li>
       <a
-        href="/comments"
-        class={`menu-link ${currentPath.startsWith("/comments") ? "active" : ""}`}
-        >{siteConfig.navigation.comments}</a
+        href="/design"
+        class={`menu-link ${currentPath.startsWith("/design") ? "active" : ""}`}
+        >{siteConfig.navigation.design}</a
       >
     </li>
   </ul>

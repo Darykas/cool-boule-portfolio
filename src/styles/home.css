@@ -243,7 +243,8 @@ nav {
 
 /* Hero Section */
 .hero-section {
-  background: #fafdff;
+  background-size: cover;
+  background-position: center;
   min-height: 100vh;
   width: 100%;
   display: flex;
@@ -254,6 +255,17 @@ nav {
   margin: 0;
   font-family: var(--font-sans);
   padding-top: 60px;
+  position: relative;
+}
+
+.hero-section-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(250, 253, 255, 0.7);
+  z-index: 0;
 }
 
 .hero-content-wrapper {
@@ -265,19 +277,42 @@ nav {
   gap: 2rem;
   width: 100%;
   align-items: center;
+  position: relative;
+  z-index: 1;
 }
 
+/*.hero-avatar-circle {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #76cfc5 0%, #ffb400 100%);
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-avatar {
+  width: 85%;
+  height: 85%;
+  object-fit: cover;
+  border-radius: 50%;
+}*/
+
 .hero-left-col {
-  flex: 8;
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 2rem;
+  gap: 4rem;
   height: 100%;
+  max-width: 700px;
 }
 
 .hero-right-col {
-  flex: 4;
+  flex: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -292,6 +327,7 @@ nav {
   color: #179b8e;
   font-weight: 600;
   letter-spacing: 0.01em;
+  text-align: center;
 }
 
 .hero-big-text {
@@ -302,8 +338,8 @@ nav {
   background: linear-gradient(90deg, #76cfc5 0%, #ffb400 100%);
   -webkit-background-clip: text;
   background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
+  color:  #179b8e;
+  -webkit-text-fill-color:  #179b8e;
   position: relative;
   z-index: 1;
 }
@@ -314,6 +350,7 @@ nav {
   color: #444;
   line-height: 1.8;
   font-weight: 400;
+  text-align: center;
 }
 
 .hero-btn-row {
@@ -587,7 +624,7 @@ nav {
 .coverflow-item {
   width: 350px;
   height: 350px;
-  object-fit: contain;
+  object-fit: cover;
   border-radius: 20px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
   will-change: transform, opacity;

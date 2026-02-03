@@ -4,31 +4,16 @@ import { siteConfig } from "../config/site";
 ---
 
 <section class="hero-section">
-  <div class="hero-content-wrapper page-content">
-    <div class="hero-left-col hero-content-animate">
-      <p class="hero-normal-text">{siteConfig.hero.prefix}</p>
-      <h1 class="hero-big-text">{siteConfig.hero.name}</h1>
-      <p class="hero-intro-text">
-        {siteConfig.hero.intro.split('\n').map((line, i, arr) => (
-          <Fragment>
-            {line}
-            {i < arr.length - 1 && <br />}
-          </Fragment>
-        ))}
-      </p>
-      <div class="hero-btn-row">
-        <a href="/posts" class="hero-btn">{siteConfig.hero.buttons.viewPosts}</a>
-        <a href="/contact" class="hero-btn-alt">{siteConfig.hero.buttons.contactMe}</a>
-      </div>
+  <div class="hero-section-overlay" style="display: none;"></div>
+  <div class="hero-content-wrapper page-content" style="flex-direction: row-reverse;">
+    <div class="hero-avatar-circle">
+      <img src={siteConfig.hero.avatar} alt="Self Portrait" class="hero-avatar" />
     </div>
-    <div class="hero-right-col">
-      <img src={siteConfig.hero.avatar} alt="avatar" class="hero-avatar hero-avatar-animate" />
-      <div class="social-list">
-        {siteConfig.hero.socialLinks.map((social) => (
-          <a href={social.url} class="social-icon-btn social-icon-animate" aria-label={social.name}>
-            <img src={social.icon} alt={social.name.toLowerCase()} />
-          </a>
-        ))}
+    <div class="hero-left-col hero-content-animate">
+      <h1 class="hero-big-text" style="font-size: 1.5rem; line-height: 1.4;">Hello! I am Daria.<br>I am an illustrator and digital artist.</h1>
+      <div class="hero-btn-row">
+        <a href="/" class="hero-btn">{siteConfig.hero.buttons.viewPosts}</a>
+        <a href="/contact" class="hero-btn-alt">{siteConfig.hero.buttons.contactMe}</a>
       </div>
     </div>
   </div>
